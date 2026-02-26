@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Results - AI Health Assistant</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/ai-results.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <a href="index.html" class="back-link">←</a>
+      <span class="logo">AI Health Assistant</span>
+      <button class="lang-switch" id="langSwitch" onclick="toggleLanguage()">தமிழ்</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <div id="loadingSpinner" class="loading-container">
+      <div class="spinner"></div>
+      <p id="loadingText">Analyzing your query...</p>
+    </div>
+
+    <div id="searchResults" class="results-container" style="display: none;"></div>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/ai-search.js"></script>
+  <script src="js/search-results.js"></script>
+</body>
+</html>

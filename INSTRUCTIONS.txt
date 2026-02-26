@@ -1,0 +1,67 @@
+IMPORTANT PROJECT INSTRUCTIONS
+
+CHANGE CONTROL POLICY
+
+This project must strictly follow the instructions given below.
+
+1. DO NOT change, modify, remove, or add ANYTHING
+   in the project structure, code, UI, features, or logic
+   unless I explicitly instruct you to do so.
+
+2. If you feel any change, improvement, optimization,
+   or correction is required:
+   - You MUST ask permission first
+   - Clearly explain:
+     What you want to change
+     Why the change is needed
+     What will be affected
+
+3. DO NOT proceed with any change until
+   I clearly approve it with confirmation.
+
+LOCKED ITEMS (DO NOT TOUCH)
+
+- Project idea and purpose
+- Feature list
+- UI/UX layout
+- Color theme
+- Language support
+- Disclaimer content
+- Data structure
+- Page flow and navigation
+
+These are FINAL unless I say otherwise.
+
+ALLOWED ACTIONS WITHOUT PERMISSION
+
+You MAY:
+- Fix syntax errors ONLY if they break execution
+- Follow instructions exactly as written
+- Ask clarification questions if instructions are unclear
+
+You MAY NOT:
+- Refactor code
+- Improve UI/UX on your own
+- Add new features
+- Remove existing features
+- Change wording or content
+- Change colors, fonts, or layouts
+
+COMMUNICATION RULE
+
+Before making ANY change:
+Ask permission
+Wait for approval
+Then proceed
+
+If permission is NOT given, continue with the existing setup.
+
+FINAL NOTE
+
+This project is built for academic evaluation.
+Unauthorized changes may affect grading.
+
+Follow instructions strictly.
+
+Author: Project Owner
+Approval Required: YES

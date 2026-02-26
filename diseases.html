@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Herbal Remedies</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <span class="logo" data-i18n="herbs.title">Herbal Remedies</span>
+      <button class="lang-switch" id="langSwitch" onclick="toggleLanguage()">தமிழ்</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <a href="index.html" class="btn btn-back" data-i18n="herbs.backToDiseases">← Back to Diseases</a>
+
+    <div id="diseaseTitle">
+      <h1 id="diseaseName">Disease Name</h1>
+    </div>
+
+    <div class="disclaimer-banner">
+      <p id="generalWarning">⚠️ If symptoms last more than 2-3 days, please visit a hospital or PHC.</p>
+    </div>
+
+    <div id="herbsList"></div>
+
+    <div class="warning-box">
+      <p id="seriousWarning">🔴 ALERT: If you have high fever (above 102°F), severe vomiting, difficulty breathing, or chest pain - go to hospital immediately!</p>
+    </div>
+
+    <a href="hospitals.html" class="btn btn-primary btn-block">🚑 <span data-i18n="nav.hospitals">Find Nearest Hospital</span></a>
+  </main>
+
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-item">
+      <span>🏠</span>
+      <span data-i18n="nav.home">Home</span>
+    </a>
+    <a href="diseases.html" class="nav-item active">
+      <span>🏥</span>
+      <span data-i18n="nav.diseases">Diseases</span>
+    </a>
+    <a href="hospitals.html" class="nav-item">
+      <span>🚑</span>
+      <span data-i18n="nav.hospitals">Hospitals</span>
+    </a>
+    <a href="about.html" class="nav-item">
+      <span>ℹ️</span>
+      <span data-i18n="nav.about">About</span>
+    </a>
+  </nav>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    function loadDiseaseHerbs() {
+      const params = new URLSearchParams(window.location.search);
+      const diseaseId = params.get('disease');
+      const lang = getLang();
+      
+      if (!diseaseId) {
+        window.location.href = 'index.html';
+        return;
+      }
+
+      const diseaseData = getDiseaseData(diseaseId);
+      if (!diseaseData) {
+        window.location.href = 'index.html';
+        return;
+      }
+
+      document.getElementById('diseaseName').textContent = getDiseaseName(diseaseId);
+      document.getElementById('generalWarning').textContent = getWarning('general');
+      document.getElementById('seriousWarning').textContent = getWarning('serious');
+
+      const herbsList = document.getElementById('herbsList');
+      const herbs = diseaseData.herbs;
+
+      herbsList.innerHTML = herbs.map(herbKey => {
+        const herb = getHerbData(herbKey);
+        if (!herb) return '';
+
+        return `
+          <div class="herb-card">
+            <div class="herb-header">
+              <div class="herb-icon">${herb.image}</div>
+              <div class="herb-title">
+                <div class="herb-name">${lang === 'ta' ? herb.name.ta : herb.name.en}</div>
+                <div class="herb-scientific">${herb.scientific}</div>
+              </div>
+            </div>
+            
+            <div class="herb-section">
+              <h3>💚 <span data-i18n="herbs.benefits">Benefits</span></h3>
+              <p>${lang === 'ta' ? herb.benefits.ta : herb.benefits.en}</p>
+            </div>
+            
+            <div class="herb-section">
+              <h3>📝 <span data-i18n="herbs.preparation">How to Prepare</span></h3>
+              <p>${lang === 'ta' ? herb.preparation.ta : herb.preparation.en}</p>
+            </div>
+            
+            <div class="herb-section">
+              <h3>🥄 <span data-i18n="herbs.howToUse">How to Use</span></h3>
+              <p>${lang === 'ta' ? herb.usage.ta : herb.usage.en}</p>
+            </div>
+            
+            <div class="warning-box">
+              <p>⚠️ ${lang === 'ta' ? herb.warning.ta : herb.warning.en}</p>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    document.addEventListener('languageChanged', function() {
+      loadDiseaseHerbs();
+      applyTranslations();
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+      loadDiseaseHerbs();
+      applyTranslations();
+    });
+  </script>
+</body>
+</html>

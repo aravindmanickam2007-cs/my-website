@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Indigenous Health Awareness - Traditional herbal remedies for common ailments">
+  <title>Indigenous Health Awareness</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <span class="logo" data-i18n="nav.home">Indigenous Health</span>
+      <button class="lang-switch" id="langSwitch" onclick="toggleLanguage()">தமிழ்</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="home-hero">
+      <div class="hero-icon">🌿</div>
+      <h1 data-i18n="home.title">Self Health Awareness</h1>
+      <p data-i18n="home.subtitle">Traditional herbal remedies for common ailments</p>
+    </div>
+
+    <div class="disclaimer-banner">
+      <p>⚠️ <span data-i18n="home.disclaimer">This app does NOT replace doctors</span></p>
+    </div>
+
+    <div class="quick-actions">
+      <h2 data-i18n="home.selectDisease">Select Your Problem</h2>
+      <div class="search-container">
+        <input type="search" id="diseaseSearch" class="search-box" placeholder="Search Disease or Symptoms..." autocomplete="off">
+        <button class="search-btn" onclick="handleSearch()">🔍</button>
+      </div>
+      <div id="tamilKeyboard" class="tamil-keyboard" style="display: none;">
+        <button class="tk-btn" onclick="insertChar('க்')">க்</button>
+        <button class="tk-btn" onclick="insertChar('கா')">கா</button>
+        <button class="tk-btn" onclick="insertChar('கி')">கி</button>
+        <button class="tk-btn" onclick="insertChar('கீ')">கீ</button>
+        <button class="tk-btn" onclick="insertChar('கு')">கு</button>
+        <button class="tk-btn" onclick="insertChar('கூ')">கூ</button>
+        <button class="tk-btn" onclick="insertChar('கெ')">கெ</button>
+        <button class="tk-btn" onclick="insertChar('கே')">கே</button>
+        <button class="tk-btn" onclick="insertChar('கொ')">கொ</button>
+        <button class="tk-btn" onclick="insertChar('கோ')">கோ</button>
+        <button class="tk-btn" onclick="insertChar('ச்')">ச்</button>
+        <button class="tk-btn" onclick="insertChar('சா')">சா</button>
+        <button class="tk-btn" onclick="insertChar('சி')">சி</button>
+        <button class="tk-btn" onclick="insertChar('சீ')">சீ</button>
+        <button class="tk-btn" onclick="insertChar('சு')">சு</button>
+        <button class="tk-btn" onclick="insertChar('சூ')">சூ</button>
+        <button class="tk-btn" onclick="insertChar('செ')">செ</button>
+        <button class="tk-btn" onclick="insertChar('சே')">சே</button>
+        <button class="tk-btn" onclick="insertChar('சொ')">சொ</button>
+        <button class="tk-btn" onclick="insertChar('சோ')">சோ</button>
+        <button class="tk-btn" onclick="insertChar('த்')">த்</button>
+        <button class="tk-btn" onclick="insertChar('தா')">தா</button>
+        <button class="tk-btn" onclick="insertChar('தி')">தி</button>
+        <button class="tk-btn" onclick="insertChar('தீ')">தீ</button>
+        <button class="tk-btn" onclick="insertChar('து')">து</button>
+        <button class="tk-btn" onclick="insertChar('தூ')">தூ</button>
+        <button class="tk-btn" onclick="insertChar('தெ')">தெ</button>
+        <button class="tk-btn" onclick="insertChar('தே')">தே</button>
+        <button class="tk-btn" onclick="insertChar('தொ')">தொ</button>
+        <button class="tk-btn" onclick="insertChar('தோ')">தோ</button>
+        <button class="tk-btn" onclick="insertChar('ப்')">ப்</button>
+        <button class="tk-btn" onclick="insertChar('பா')">பா</button>
+        <button class="tk-btn" onclick="insertChar('பி')">பி</button>
+        <button class="tk-btn" onclick="insertChar('பீ')">பீ</button>
+        <button class="tk-btn" onclick="insertChar('பு')">பு</button>
+        <button class="tk-btn" onclick="insertChar('பூ')">பூ</button>
+        <button class="tk-btn" onclick="insertChar('பெ')">பெ</button>
+        <button class="tk-btn" onclick="insertChar('பே')">பே</button>
+        <button class="tk-btn" onclick="insertChar('பொ')">பொ</button>
+        <button class="tk-btn" onclick="insertChar('போ')">போ</button>
+        <button class="tk-btn" onclick="insertChar('ம்')">ம்</button>
+        <button class="tk-btn" onclick="insertChar('மா')">மா</button>
+        <button class="tk-btn" onclick="insertChar('மி')">மி</button>
+        <button class="tk-btn" onclick="insertChar('மீ')">மீ</button>
+        <button class="tk-btn" onclick="insertChar('மு')">மு</button>
+        <button class="tk-btn" onclick="insertChar('மூ')">மூ</button>
+        <button class="tk-btn" onclick="insertChar('மெ')">மெ</button>
+        <button class="tk-btn" onclick="insertChar('மே')">மே</button>
+        <button class="tk-btn" onclick="insertChar('மொ')">மொ</button>
+        <button class="tk-btn" onclick="insertChar('மோ')">மோ</button>
+        <button class="tk-btn tk-backspace" onclick="backspaceChar()">⌫</button>
+        <button class="tk-btn tk-clear" onclick="clearSearch()">✕</button>
+      </div>
+      <div id="searchDropdown" class="search-dropdown"></div>
+      <div class="disease-grid">
+        <a href="diseases.html?disease=cold" class="disease-card">
+          <span class="disease-icon">❄️</span>
+          <span class="disease-name" data-i18n="diseases.cold">Cold / Runny Nose</span>
+        </a>
+        <a href="diseases.html?disease=fever" class="disease-card">
+          <span class="disease-icon">🌡️</span>
+          <span class="disease-name" data-i18n="diseases.fever">Fever</span>
+        </a>
+        <a href="diseases.html?disease=cough" class="disease-card">
+          <span class="disease-icon">😷</span>
+          <span class="disease-name" data-i18n="diseases.cough">Cough</span>
+        </a>
+        <a href="diseases.html?disease=headache" class="disease-card">
+          <span class="disease-icon">🤕</span>
+          <span class="disease-name" data-i18n="diseases.headache">Headache</span>
+        </a>
+        <a href="diseases.html?disease=stomach" class="disease-card">
+          <span class="disease-icon">🤢</span>
+          <span class="disease-name" data-i18n="diseases.stomach">Stomach Pain</span>
+        </a>
+        <a href="diseases.html?disease=sorethroat" class="disease-card">
+          <span class="disease-icon">🗣️</span>
+          <span class="disease-name" data-i18n="diseases.sorethroat">Sore Throat</span>
+        </a>
+        <a href="diseases.html?disease=bodypain" class="disease-card">
+          <span class="disease-icon">💪</span>
+          <span class="disease-name" data-i18n="diseases.bodypain">Body Pain</span>
+        </a>
+        <a href="diseases.html?disease=indigestion" class="disease-card">
+          <span class="disease-icon">🫃</span>
+          <span class="disease-name" data-i18n="diseases.indigestion">Indigestion</span>
+        </a>
+        <a href="diseases.html?disease=vomiting" class="disease-card">
+          <span class="disease-icon">🤮</span>
+          <span class="disease-name" data-i18n="diseases.vomiting">Vomiting</span>
+        </a>
+        <a href="diseases.html?disease=diarrhea" class="disease-card">
+          <span class="disease-icon">💧</span>
+          <span class="disease-name" data-i18n="diseases.diarrhea">Diarrhea</span>
+        </a>
+        <a href="diseases.html?disease=skinitching" class="disease-card">
+          <span class="disease-icon">🩹</span>
+          <span class="disease-name" data-i18n="diseases.skinitching">Skin Itching</span>
+        </a>
+        <a href="diseases.html?disease=toothache" class="disease-card">
+          <span class="disease-icon">🦷</span>
+          <span class="disease-name" data-i18n="diseases.toothache">Toothache</span>
+        </a>
+        <a href="diseases.html?disease=eyeirritation" class="disease-card">
+          <span class="disease-icon">👁️</span>
+          <span class="disease-name" data-i18n="diseases.eyeirritation">Eye Irritation</span>
+        </a>
+        <a href="diseases.html?disease=bloodpressure" class="disease-card">
+          <span class="disease-icon">💓</span>
+          <span class="disease-name" data-i18n="diseases.bloodpressure">Blood Pressure</span>
+        </a>
+        <a href="diseases.html?disease=asthma" class="disease-card">
+          <span class="disease-icon">😮‍💨</span>
+          <span class="disease-name" data-i18n="diseases.asthma">Asthma</span>
+        </a>
+        <a href="diseases.html?disease=allergy" class="disease-card">
+          <span class="disease-icon">🤧</span>
+          <span class="disease-name" data-i18n="diseases.allergy">Allergy</span>
+        </a>
+        <a href="diseases.html?disease=dengue" class="disease-card">
+          <span class="disease-icon">🦟</span>
+          <span class="disease-name" data-i18n="diseases.dengue">Dengue</span>
+        </a>
+        <a href="diseases.html?disease=malaria" class="disease-card">
+          <span class="disease-icon">🌴</span>
+          <span class="disease-name" data-i18n="diseases.malaria">Malaria</span>
+        </a>
+        <a href="diseases.html?disease=chikungunya" class="disease-card">
+          <span class="disease-icon">😫</span>
+          <span class="disease-name" data-i18n="diseases.chikungunya">Chikungunya</span>
+        </a>
+        <a href="diseases.html?disease=typhoid" class="disease-card">
+          <span class="disease-icon">🔴</span>
+          <span class="disease-name" data-i18n="diseases.typhoid">Typhoid</span>
+        </a>
+        <a href="diseases.html?disease=jaundice" class="disease-card">
+          <span class="disease-icon">🟡</span>
+          <span class="disease-name" data-i18n="diseases.jaundice">Jaundice</span>
+        </a>
+        <a href="diseases.html?disease=diabetes" class="disease-card">
+          <span class="disease-icon">🩸</span>
+          <span class="disease-name" data-i18n="diseases.diabetes">Diabetes</span>
+        </a>
+        <a href="diseases.html?disease=constipation" class="disease-card">
+          <span class="disease-icon">🪨</span>
+          <span class="disease-name" data-i18n="diseases.constipation">Constipation</span>
+        </a>
+        <a href="diseases.html?disease=acidity" class="disease-card">
+          <span class="disease-icon">🔥</span>
+          <span class="disease-name" data-i18n="diseases.acidity">Acidity</span>
+        </a>
+        <a href="diseases.html?disease=gas" class="disease-card">
+          <span class="disease-icon">💨</span>
+          <span class="disease-name" data-i18n="diseases.gas">Gas / Bloating</span>
+        </a>
+        <a href="diseases.html?disease=piles" class="disease-card">
+          <span class="disease-icon">😣</span>
+          <span class="disease-name" data-i18n="diseases.piles">Piles</span>
+        </a>
+        <a href="diseases.html?disease=worms" class="disease-card">
+          <span class="disease-icon">🪱</span>
+          <span class="disease-name" data-i18n="diseases.worms">Intestinal Worms</span>
+        </a>
+        <a href="diseases.html?disease=urinary" class="disease-card">
+          <span class="disease-icon">🚽</span>
+          <span class="disease-name" data-i18n="diseases.urinary">Urinary Infection</span>
+        </a>
+        <a href="diseases.html?disease=kidneystone" class="disease-card">
+          <span class="disease-icon">🪨</span>
+          <span class="disease-name" data-i18n="diseases.kidneystone">Kidney Stone</span>
+        </a>
+        <a href="diseases.html?disease=liver" class="disease-card">
+          <span class="disease-icon">🫘</span>
+          <span class="disease-name" data-i18n="diseases.liver">Liver Problems</span>
+        </a>
+        <a href="diseases.html?disease=heartburn" class="disease-card">
+          <span class="disease-icon">❤️‍🔥</span>
+          <span class="disease-name" data-i18n="diseases.heartburn">Heartburn</span>
+        </a>
+        <a href="diseases.html?disease=migraine" class="disease-card">
+          <span class="disease-icon">🌀</span>
+          <span class="disease-name" data-i18n="diseases.migraine">Migraine</span>
+        </a>
+        <a href="diseases.html?disease=anemia" class="disease-card">
+          <span class="disease-icon">😴</span>
+          <span class="disease-name" data-i18n="diseases.anemia">Anemia</span>
+        </a>
+        <a href="diseases.html?disease=fatigue" class="disease-card">
+          <span class="disease-icon">🥱</span>
+          <span class="disease-name" data-i18n="diseases.fatigue">Fatigue / Tiredness</span>
+        </a>
+        <a href="diseases.html?disease=insomnia" class="disease-card">
+          <span class="disease-icon">🌙</span>
+          <span class="disease-name" data-i18n="diseases.insomnia">Insomnia</span>
+        </a>
+        <a href="diseases.html?disease=anxiety" class="disease-card">
+          <span class="disease-icon">😰</span>
+          <span class="disease-name" data-i18n="diseases.anxiety">Anxiety</span>
+        </a>
+        <a href="diseases.html?disease=depression" class="disease-card">
+          <span class="disease-icon">😔</span>
+          <span class="disease-name" data-i18n="diseases.depression">Depression</span>
+        </a>
+        <a href="diseases.html?disease=backpain" class="disease-card">
+          <span class="disease-icon">🔙</span>
+          <span class="disease-name" data-i18n="diseases.backpain">Back Pain</span>
+        </a>
+        <a href="diseases.html?disease=arthritis" class="disease-card">
+          <span class="disease-icon">🦴</span>
+          <span class="disease-name" data-i18n="diseases.arthritis">Arthritis</span>
+        </a>
+        <a href="diseases.html?disease=diabeticwounds" class="disease-card">
+          <span class="disease-icon">🩹</span>
+          <span class="disease-name" data-i18n="diseases.diabeticwounds">Diabetic Wounds</span>
+        </a>
+        <a href="diseases.html?disease=skineczema" class="disease-card">
+          <span class="disease-icon">🟤</span>
+          <span class="disease-name" data-i18n="diseases.skineczema">Skin Eczema</span>
+        </a>
+        <a href="diseases.html?disease=skinrashes" class="disease-card">
+          <span class="disease-icon">🔴</span>
+          <span class="disease-name" data-i18n="diseases.skinrashes">Skin Rashes</span>
+        </a>
+        <a href="diseases.html?disease=acne" class="disease-card">
+          <span class="disease-icon">😣</span>
+          <span class="disease-name" data-i18n="diseases.acne">Acne</span>
+        </a>
+        <a href="diseases.html?disease=hairfall" class="disease-card">
+          <span class="disease-icon">💇</span>
+          <span class="disease-name" data-i18n="diseases.hairfall">Hair Fall</span>
+        </a>
+        <a href="diseases.html?disease=dandruff" class="disease-card">
+          <span class="disease-icon">💨</span>
+          <span class="disease-name" data-i18n="diseases.dandruff">Dandruff</span>
+        </a>
+        <a href="diseases.html?disease=earpain" class="disease-card">
+          <span class="disease-icon">👂</span>
+          <span class="disease-name" data-i18n="diseases.earpain">Ear Pain</span>
+        </a>
+        <a href="diseases.html?disease=nosebleed" class="disease-card">
+          <span class="disease-icon">🩸</span>
+          <span class="disease-name" data-i18n="diseases.nosebleed">Nose Bleed</span>
+        </a>
+        <a href="diseases.html?disease=mouthulcer" class="disease-card">
+          <span class="disease-icon">👄</span>
+          <span class="disease-name" data-i18n="diseases.mouthulcer">Mouth Ulcer</span>
+        </a>
+        <a href="diseases.html?disease=badbreath" class="disease-card">
+          <span class="disease-icon">😶</span>
+          <span class="disease-name" data-i18n="diseases.badbreath">Bad Breath</span>
+        </a>
+        <a href="diseases.html?disease=snoring" class="disease-card">
+          <span class="disease-icon">😴</span>
+          <span class="disease-name" data-i18n="diseases.snoring">Snoring</span>
+        </a>
+        <a href="diseases.html?disease=motion" class="disease-card">
+          <span class="disease-icon">🚶</span>
+          <span class="disease-name" data-i18n="diseases.motion">Motion Sickness</span>
+        </a>
+        <a href="diseases.html?disease=sneezing" class="disease-card">
+          <span class="disease-icon">🤧</span>
+          <span class="disease-name" data-i18n="diseases.sneezing">Sneezing</span>
+        </a>
+        <a href="diseases.html?disease=nasalcongestion" class="disease-card">
+          <span class="disease-icon">👃</span>
+          <span class="disease-name" data-i18n="diseases.nasalcongestion">Nasal Congestion</span>
+        </a>
+        <a href="diseases.html?disease=drycough" class="disease-card">
+          <span class="disease-icon">😤</span>
+          <span class="disease-name" data-i18n="diseases.drycough">Dry Cough</span>
+        </a>
+        <a href="diseases.html?disease=wetcough" class="disease-card">
+          <span class="disease-icon">😷</span>
+          <span class="disease-name" data-i18n="diseases.wetcough">Wet Cough</span>
+        </a>
+        <a href="diseases.html?disease=nausea" class="disease-card">
+          <span class="disease-icon">🤢</span>
+          <span class="disease-name" data-i18n="diseases.nausea">Nausea</span>
+        </a>
+        <a href="diseases.html?disease=mildvomiting" class="disease-card">
+          <span class="disease-icon">🤮</span>
+          <span class="disease-name" data-i18n="diseases.mildvomiting">Vomiting (Mild)</span>
+        </a>
+        <a href="diseases.html?disease=gasproblem" class="disease-card">
+          <span class="disease-icon">💨</span>
+          <span class="disease-name" data-i18n="diseases.gasproblem">Gas Problem</span>
+        </a>
+        <a href="diseases.html?disease=bloating" class="disease-card">
+          <span class="disease-icon">🫃</span>
+          <span class="disease-name" data-i18n="diseases.bloating">Bloating</span>
+        </a>
+        <a href="diseases.html?disease=lossappetite" class="disease-card">
+          <span class="disease-icon">🍽️</span>
+          <span class="disease-name" data-i18n="diseases.lossappetite">Loss of Appetite</span>
+        </a>
+        <a href="diseases.html?disease=excessthist" class="disease-card">
+          <span class="disease-icon">🥤</span>
+          <span class="disease-name" data-i18n="diseases.excessthist">Excess Thirst</span>
+        </a>
+        <a href="diseases.html?disease=heatrash" class="disease-card">
+          <span class="disease-icon">🥵</span>
+          <span class="disease-name" data-i18n="diseases.heatrash">Heat Rash</span>
+        </a>
+        <a href="diseases.html?disease=sunburn" class="disease-card">
+          <span class="disease-icon">☀️</span>
+          <span class="disease-name" data-i18n="diseases.sunburn">Sunburn</span>
+        </a>
+        <a href="diseases.html?disease=dryskin" class="disease-card">
+          <span class="disease-icon">🧴</span>
+          <span class="disease-name" data-i18n="diseases.dryskin">Dry Skin</span>
+        </a>
+        <a href="diseases.html?disease=oilyskin" class="disease-card">
+          <span class="disease-icon">💧</span>
+          <span class="disease-name" data-i18n="diseases.oilyskin">Oily Skin</span>
+        </a>
+        <a href="diseases.html?disease=minorcuts" class="disease-card">
+          <span class="disease-icon">🩸</span>
+          <span class="disease-name" data-i18n="diseases.minorcuts">Minor Cuts</span>
+        </a>
+        <a href="diseases.html?disease=minorburns" class="disease-card">
+          <span class="disease-icon">🔥</span>
+          <span class="disease-name" data-i18n="diseases.minorburns">Minor Burns</span>
+        </a>
+        <a href="diseases.html?disease=footcracks" class="disease-card">
+          <span class="disease-icon">🦶</span>
+          <span class="disease-name" data-i18n="diseases.footcracks">Foot Cracks</span>
+        </a>
+        <a href="diseases.html?disease=legcramps" class="disease-card">
+          <span class="disease-icon">🦵</span>
+          <span class="disease-name" data-i18n="diseases.legcramps">Leg Cramps</span>
+        </a>
+        <a href="diseases.html?disease=musclestiffness" class="disease-card">
+          <span class="disease-icon">💪</span>
+          <span class="disease-name" data-i18n="diseases.musclestiffness">Muscle Stiffness</span>
+        </a>
+        <a href="diseases.html?disease=eyedryness" class="disease-card">
+          <span class="disease-icon">👁️</span>
+          <span class="disease-name" data-i18n="diseases.eyedryness">Eye Dryness</span>
+        </a>
+        <a href="diseases.html?disease=wateryeyes" class="disease-card">
+          <span class="disease-icon">💧</span>
+          <span class="disease-name" data-i18n="diseases.wateryeyes">Watery Eyes</span>
+        </a>
+        <a href="diseases.html?disease=mouthdryness" class="disease-card">
+          <span class="disease-icon">👄</span>
+          <span class="disease-name" data-i18n="diseases.mouthdryness">Mouth Dryness</span>
+        </a>
+        <a href="diseases.html?disease=tongueulcer" class="disease-card">
+          <span class="disease-icon">👅</span>
+          <span class="disease-name" data-i18n="diseases.tongueulcer">Tongue Ulcer</span>
+        </a>
+        <a href="diseases.html?disease=hiccups" class="disease-card">
+          <span class="disease-icon">😤</span>
+          <span class="disease-name" data-i18n="diseases.hiccups">Hiccups</span>
+        </a>
+        <a href="diseases.html?disease=excesssweating" class="disease-card">
+          <span class="disease-icon">💦</span>
+          <span class="disease-name" data-i18n="diseases.excesssweating">Excess Sweating</span>
+        </a>
+        <a href="diseases.html?disease=bodyodor" class="disease-card">
+          <span class="disease-icon">😷</span>
+          <span class="disease-name" data-i18n="diseases.bodyodor">Body Odor</span>
+        </a>
+        <a href="diseases.html?disease=handtremor" class="disease-card">
+          <span class="disease-icon">🤚</span>
+          <span class="disease-name" data-i18n="diseases.handtremor">Hand Tremor</span>
+        </a>
+        <a href="diseases.html?disease=milddizziness" class="disease-card">
+          <span class="disease-icon">😵</span>
+          <span class="disease-name" data-i18n="diseases.milddizziness">Mild Dizziness</span>
+        </a>
+        <a href="diseases.html?disease=mildfatigue" class="disease-card">
+          <span class="disease-icon">🥱</span>
+          <span class="disease-name" data-i18n="diseases.mildfatigue">Fatigue (Mild)</span>
+        </a>
+        <a href="diseases.html?disease=lowenergy" class="disease-card">
+          <span class="disease-icon">🔋</span>
+          <span class="disease-name" data-i18n="diseases.lowenergy">Low Energy</span>
+        </a>
+        <a href="diseases.html?disease=crackedlips" class="disease-card">
+          <span class="disease-icon">👄</span>
+          <span class="disease-name" data-i18n="diseases.crackedlips">Cracked Lips</span>
+        </a>
+        <a href="diseases.html?disease=drymouthulcer" class="disease-card">
+          <span class="disease-icon">👄</span>
+          <span class="disease-name" data-i18n="diseases.drymouthulcer">Dry Mouth Ulcer</span>
+        </a>
+        <a href="diseases.html?disease=nailweakness" class="disease-card">
+          <span class="disease-icon">💅</span>
+          <span class="disease-name" data-i18n="diseases.nailweakness">Nail Weakness</span>
+        </a>
+        <a href="diseases.html?disease=hairdryness" class="disease-card">
+          <span class="disease-icon">💇</span>
+          <span class="disease-name" data-i18n="diseases.hairdryness">Hair Dryness</span>
+        </a>
+        <a href="diseases.html?disease=mildhairgreying" class="disease-card">
+          <span class="disease-icon">🧑‍🦳</span>
+          <span class="disease-name" data-i18n="diseases.mildhairgreying">Mild Hair Greying</span>
+        </a>
+        <a href="diseases.html?disease=throatdryness" class="disease-card">
+          <span class="disease-icon">🗣️</span>
+          <span class="disease-name" data-i18n="diseases.throatdryness">Throat Dryness</span>
+        </a>
+        <a href="diseases.html?disease=seasonalallergy" class="disease-card">
+          <span class="disease-icon">🤧</span>
+          <span class="disease-name" data-i18n="diseases.seasonalallergy">Seasonal Allergy</span>
+        </a>
+        <a href="diseases.html?disease=coldhandsfeet" class="disease-card">
+          <span class="disease-icon">❄️</span>
+          <span class="disease-name" data-i18n="diseases.coldhandsfeet">Cold Hands & Feet</span>
+        </a>
+        <a href="diseases.html?disease=mildchestcongestion" class="disease-card">
+          <span class="disease-icon">🫁</span>
+          <span class="disease-name" data-i18n="diseases.mildchestcongestion">Mild Chest Congestion</span>
+        </a>
+        <a href="diseases.html?disease=nosedryness" class="disease-card">
+          <span class="disease-icon">👃</span>
+          <span class="disease-name" data-i18n="diseases.nosedryness">Nose Dryness</span>
+        </a>
+        <a href="diseases.html?disease=frequentyawning" class="disease-card">
+          <span class="disease-icon">🥱</span>
+          <span class="disease-name" data-i18n="diseases.frequentyawning">Frequent Yawning</span>
+        </a>
+        <a href="diseases.html?disease=mildpalpitations" class="disease-card">
+          <span class="disease-icon">💓</span>
+          <span class="disease-name" data-i18n="diseases.mildpalpitations">Mild Palpitations</span>
+        </a>
+        <a href="diseases.html?disease=mildconstipationkids" class="disease-card">
+          <span class="disease-icon">🧒</span>
+          <span class="disease-name" data-i18n="diseases.mildconstipationkids">Constipation in Kids</span>
+        </a>
+        <a href="diseases.html?disease=teethingdiscomfort" class="disease-card">
+          <span class="disease-icon">👶</span>
+          <span class="disease-name" data-i18n="diseases.teethingdiscomfort">Teething Discomfort</span>
+        </a>
+        <a href="diseases.html?disease=mildcoldchildren" class="disease-card">
+          <span class="disease-icon">👶</span>
+          <span class="disease-name" data-i18n="diseases.mildcoldchildren">Cold in Children</span>
+        </a>
+        <a href="diseases.html?disease=generalbodypain" class="disease-card">
+          <span class="disease-icon">😣</span>
+          <span class="disease-name" data-i18n="diseases.generalbodypain">General Body Ache</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-warning">
+      <p>🔴 <span data-i18n="herbs.warning">If symptoms last more than 2-3 days, visit a hospital!</span></p>
+    </div>
+  </main>
+
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-item active">
+      <span>🏠</span>
+      <span data-i18n="nav.home">Home</span>
+    </a>
+    <a href="diseases.html" class="nav-item">
+      <span>🏥</span>
+      <span data-i18n="nav.diseases">Diseases</span>
+    </a>
+    <a href="hospitals.html" class="nav-item">
+      <span>🚑</span>
+      <span data-i18n="nav.hospitals">Hospitals</span>
+    </a>
+    <a href="about.html" class="nav-item">
+      <span>ℹ️</span>
+      <span data-i18n="nav.about">About</span>
+    </a>
+  </nav>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/ai-search.js"></script>
+</body>
+</html>

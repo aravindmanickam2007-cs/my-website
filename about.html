@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - Health Awareness</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <span class="logo" data-i18n="about.title">About This App</span>
+      <button class="lang-switch" id="langSwitch" onclick="toggleLanguage()">தமிழ்</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="about-section">
+      <h2>🌿 <span data-i18n="about.purpose">Purpose</span></h2>
+      <p id="purposeText">This app provides awareness about traditional herbal remedies for common health problems. It helps rural communities make informed decisions about when to use home remedies and when to seek professional medical help.</p>
+    </div>
+
+    <div class="disclaimer-box">
+      <h2>⚠️ <span data-i18n="about.disclaimerTitle">Important Disclaimer</span></h2>
+      <p id="disclaimerText">This app is for health awareness purposes ONLY. It does NOT replace qualified medical professionals, doctors, or hospitals. The information provided is based on traditional knowledge and should not be used as a substitute for professional medical diagnosis or treatment. Always consult a doctor for proper medical care.</p>
+    </div>
+
+    <div class="about-section">
+      <h2>🏥 <span data-i18n="about.whenToSeeDoctor">When to See a Doctor</span></h2>
+      <ul id="whenToSeeDoctorList"></ul>
+    </div>
+
+    <div class="about-section">
+      <h2>📞 <span data-i18n="hospitals.emergency">Emergency Contacts</span></h2>
+      <div style="margin-top: 12px;">
+        <p><strong>🚑 Ambulance:</strong> <a href="tel:108" style="color: var(--primary);">108</a></p>
+        <p><strong>🏥 Health Helpline:</strong> <a href="tel:104" style="color: var(--primary);">104</a></p>
+      </div>
+    </div>
+
+    <div class="warning-box">
+      <p id="generalWarning">⚠️ If symptoms last more than 2-3 days, please visit a hospital or Primary Health Center (PHC).</p>
+    </div>
+
+    <a href="hospitals.html" class="btn btn-primary btn-block" style="margin-top: 16px;">View All Hospitals →</a>
+  </main>
+
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-item">
+      <span>🏠</span>
+      <span data-i18n="nav.home">Home</span>
+    </a>
+    <a href="diseases.html" class="nav-item">
+      <span>🏥</span>
+      <span data-i18n="nav.diseases">Diseases</span>
+    </a>
+    <a href="hospitals.html" class="nav-item">
+      <span>🚑</span>
+      <span data-i18n="nav.hospitals">Hospitals</span>
+    </a>
+    <a href="about.html" class="nav-item active">
+      <span>ℹ️</span>
+      <span data-i18n="nav.about">About</span>
+    </a>
+  </nav>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    function loadAbout() {
+      const lang = getLang();
+      
+      const purposeTexts = {
+        en: 'This app provides awareness about traditional herbal remedies for common health problems. It helps rural communities make informed decisions about when to use home remedies and when to seek professional medical help.',
+        ta: 'இந்த பயன்பாடு பொதுவான ஆரோக்கிய பிரச்சனைகளுக்கு மரபு herb மருத்துவம் பற்றி விழிப்புணர்வு வழங்குகிறது. ஊரக சமூகங்கள் வீடு பராமரிப்பு மற்று முறையை பயன்படுத்தலாமா அல்லது நிபுணர் மருத்துவ உதவியை நாடலாமா என்பதை பற்றி சிறந்த முடிவுகள் எடுக்க உதவுகிறது.'
+      };
+      
+      const disclaimerTexts = {
+        en: 'This app is for health awareness purposes ONLY. It does NOT replace qualified medical professionals, doctors, or hospitals. The information provided is based on traditional knowledge and should not be used as a substitute for professional medical diagnosis or treatment. Always consult a doctor for proper medical care.',
+        ta: 'இந்த பயன்பாடு ஆரோக்கிய விழிப்புணர்வு நோக்கங்களுக்கு மட்டுமே. இது தகுதியான மருத்துவ நிபுணர்கள், மருத்துவர்கள் அல்லது மருத்துவமனைகளை மாற்றாது. வழங்கப்பட்ட தகவல் மரபு அறிவை அடிப்படையாக கொண்டது மற்றும் தொழில்முறை மருத்துவ நோடியோஸ் அல்லது சிகிச்சைக்கு மாற்றாக பயன்படுத்தப்படக்கூடாது. சரியான மருத்துவ பராமரிப்புக்கு எப்போதும் மருத்துவரை அணுகவும்.'
+      };
+
+      document.getElementById('purposeText').textContent = purposeTexts[lang] || purposeTexts.en;
+      document.getElementById('disclaimerText').textContent = disclaimerTexts[lang] || disclaimerTexts.en;
+      document.getElementById('generalWarning').textContent = getWarning('general');
+
+      const whenToSeeList = getWhenToSeeDoctor();
+      document.getElementById('whenToSeeDoctorList').innerHTML = whenToSeeList.map(item => `<li>${item}</li>`).join('');
+    }
+
+    document.addEventListener('languageChanged', loadAbout);
+    document.addEventListener('DOMContentLoaded', loadAbout);
+  </script>
+</body>
+</html>
